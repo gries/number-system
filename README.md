@@ -32,7 +32,7 @@ echo $number->add($hexNumber)->value(); // 270 (15 + 255)
 echo $hexNumber->add($number)->value(); // 10E (F + FF)
 ```
 
-Customer Number System
+Custom Number System
 ----------------------
 ```php
 use gries\NumberSystem\Number;
