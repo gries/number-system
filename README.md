@@ -3,7 +3,7 @@ Number-System
 
 This PHP-Library can be used to make simple calculations with dynamic number-systems.
 
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/53d14756-ee29-4339-9956-d2f0e1b2e9b7/big.png)](https://insight.sensiolabs.com/projects/49b6b2b4-06a6-40c3-af3f-a921e790e0c6)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/53d14756-ee29-4339-9956-d2f0e1b2e9b7/big.png)](https://insight.sensiolabs.com/projects/53d14756-ee29-4339-9956-d2f0e1b2e9b7)
 
 [![Build Status](https://travis-ci.org/gries/number-system.png?branch=master)](https://travis-ci.org/gries/number-system)
 
