@@ -66,7 +66,7 @@ class Number
 
 
             $newDigits[] = $newSystem->getSymbolForPosition($remainder);
-        } while ($decimalValue > 0);
+        } while (gmp_strval($decimalValue) > 0);
 
         return $newSystem->buildNumber(array_reverse($newDigits));
     }
