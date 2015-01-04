@@ -35,6 +35,8 @@ class Number
 
         $this->numberSystem = $numberSystem;
         $this->value = $value;
+
+        $this->validate();
     }
 
     /**
@@ -205,5 +207,13 @@ class Number
     private function getDigits()
     {
         return $this->numberSystem->getDigits($this);
+    }
+
+    /**
+     * Check if the number is valid in the current number system.
+     */
+    private function validate()
+    {
+        $this->numberSystem->validateNumberValue($this->value());
     }
 }

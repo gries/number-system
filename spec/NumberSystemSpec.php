@@ -2,6 +2,7 @@
 
 namespace spec\gries\NumberSystem;
 
+use gries\NumberSystem\Exception\NumberParseException;
 use gries\NumberSystem\Number;
 use gries\NumberSystem\NumberSystem;
 use PhpSpec\ObjectBehavior;
@@ -128,6 +129,32 @@ class NumberSystemSpec extends ObjectBehavior
 
         $this->buildNumber(['a', 'c', 'c'])->shouldHaveAValueOf('a-c-c');
         $this->buildNumber(['a', 'c', 'c'])->shouldHaveASystemLike($this->getWrappedObject());
+    }
+
+    function it_validates_a_number()
+    {
+        $symbols = [
+            'a',
+            'b',
+            'c'
+        ];
+
+        $this->beConstructedWith($symbols, '-');
+        $this->validateNumberValue('a-b')->shouldBe(true);
+    }
+
+    function it_throws_an_exception_during_validation_of_an_invalid_number()
+    {
+        $symbols = [
+            'a',
+            'b',
+            'c'
+        ];
+
+        $this->beConstructedWith($symbols, '-');
+
+        $expectedException = new NumberParseException('a-d', 'd');
+        $this->shouldThrow($expectedException)->during('validateNumberValue', ['a-d']);
     }
 
     function getMatchers()

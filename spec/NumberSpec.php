@@ -2,6 +2,7 @@
 
 namespace spec\gries\NumberSystem;
 
+use gries\NumberSystem\Exception\NumberParseException;
 use gries\NumberSystem\Number;
 use gries\NumberSystem\NumberSystem;
 use PhpSpec\ObjectBehavior;
@@ -40,7 +41,7 @@ class NumberSpec extends ObjectBehavior
 
         $this->beConstructedWith('earth', $elementalSystem);
 
-        $numberWithDiffrentValue = new Number('H', $elementalSystem);
+        $numberWithDiffrentValue = new Number('water', $elementalSystem);
 
         $this->equals($numberWithDiffrentValue)->shouldBe(false);
     }
@@ -48,7 +49,7 @@ class NumberSpec extends ObjectBehavior
     function it_can_be_compared_with_a_diffrent_system()
     {
         $elementalSystem = new NumberSystem(['earth', 'fire', 'air', 'water'], '-');
-        $otherElementalSystem = new NumberSystem(['H', 'O', 'C', 'earth']);
+        $otherElementalSystem = new NumberSystem(['H', 'O', 'C', 'earth'], '-');
 
         $this->beConstructedWith('earth', $elementalSystem);
 
@@ -61,10 +62,11 @@ class NumberSpec extends ObjectBehavior
         $elementalSystem = new NumberSystem(['earth', 'fire', 'air', 'water'], '-');
         $this->beConstructedWith('fire-fire-earth-air', $elementalSystem, '-');
 
-        $base6 = new NumberSystem([0, 1, 2, 3, 4, 5]);
+        $base6 = new NumberSystem(['0', '1', '2', '3', '4', '5']);
         $expectedNumber = new Number('214', $base6);
 
-        $this->convert($base6)->shouldMatchANumberLike($expectedNumber);
+        $this->convert($base6)->shouldHaveAValueOf('214');
+        $this->convert($base6)->shouldHaveASystemLike($base6);
     }
 
     function it_can_be_converted_into_another_system_with_a_delimiter()
@@ -84,7 +86,7 @@ class NumberSpec extends ObjectBehavior
         $hexaSystem = new NumberSystem(array_merge(range(0,9), range('A', 'F')));
         $this->beConstructedWith('ACABACAB', $hexaSystem);
 
-        $binary = new NumberSystem([0, 1]);
+        $binary = new NumberSystem(['0', '1']);
         $expectedNumber = new Number('10101100101010111010110010101011', $binary);
         $this->convert($binary)->shouldMatchANumberLike($expectedNumber);
     }

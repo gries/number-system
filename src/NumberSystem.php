@@ -2,6 +2,8 @@
 
 namespace gries\NumberSystem;
 
+use gries\NumberSystem\Exception\NumberParseException;
+
 /**
  * Class NumberSystem
  *
@@ -32,6 +34,11 @@ class NumberSystem
      */
     protected $base;
 
+    /**
+     * Defines which string is used to split numbers.
+     *
+     * @var string
+     */
     protected $delimiter;
 
     /**
@@ -140,5 +147,42 @@ class NumberSystem
         $newNumberString = implode($this->delimiter, $digits);
 
         return new Number($newNumberString, $this);
+    }
+
+    /**
+     * Check if a given symbol exists in this NumberSystem.
+     *
+     * @param $symbol
+     *
+     * @return bool
+     */
+    protected function containsSymbol($symbol)
+    {
+        return false !== $this->getSymbolPosition($symbol);
+    }
+
+    /**
+     * Check if a string value is a valid number of this system.
+     *
+     * @param string $value
+     * @throws NumberParseException
+     *
+     * @return bool
+     */
+    public function validateNumberValue($value)
+    {
+        if (null === $this->delimiter) {
+            $parts = str_split($value);
+        } else {
+            $parts = explode($this->delimiter, $value);
+        }
+
+        foreach ($parts as $numberSymbol) {
+            if (!$this->containsSymbol($numberSymbol)) {
+                throw new NumberParseException($value, $numberSymbol);
+            }
+        }
+
+        return true;
     }
 }
