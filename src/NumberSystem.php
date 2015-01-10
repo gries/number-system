@@ -77,6 +77,16 @@ class NumberSystem
     }
 
     /**
+     * Get the delimiter used by this system.
+     *
+     * @return string
+     */
+    public function getDelimiter()
+    {
+
+    }
+
+    /**
      * Compare two number systems.
      *
      * @param NumberSystem $comparedNumberSystem

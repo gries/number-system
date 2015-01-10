@@ -67,6 +67,19 @@ $foo = new YoloNumber('yolo¿swag¿yolo¿yolo¿yolo¿yolo¿swag');
 echo $foo->asDecimalString(); // 1337
 ```
 
+Converting Mathematical Expressions
+-----------------------------------
+You can use the `ExpressionConverter` to convert mathematical expressions from one system to another.
+
+```php
+$decimal           = new NumberSystem();
+$binary            = new BinaryNumberSystem();
+$converter         = new ExpressionConverter();
+$decimalExpression = new Expression('(1337 * 7) + sin(5)-2', $decimal);
+
+echo $converter->convert($decimalExpression, $binary); // -> (10100111001 * 111) + sin(101)-10
+```
+
 Current limitations aka todo's
 -----------------------------
 * No support for negative numbers

@@ -2,7 +2,6 @@
 
 namespace spec\gries\NumberSystem;
 
-use gries\NumberSystem\Exception\NumberParseException;
 use gries\NumberSystem\Number;
 use gries\NumberSystem\NumberSystem;
 use PhpSpec\ObjectBehavior;
